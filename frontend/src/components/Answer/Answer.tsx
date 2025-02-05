@@ -189,6 +189,13 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
     )
   }
 
+  const [otherText, setOtherText] = useState<string>('')
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOtherText(event.target.value);
+    event.preventDefault()
+  };
+
   const ReportInappropriateFeedbackContent = () => {
     return (
       <>
@@ -401,7 +408,7 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
           <div>Your feedback will improve this experience.</div>
 
           {!showReportInappropriateFeedback ? <UnhelpfulFeedbackContent /> : <ReportInappropriateFeedbackContent />}
-
+          <div> <input type="text" id="otherTextid" value={otherText} onChange={handleChange} /> </div>
           <div>By pressing submit, your feedback will be visible to the application owner.</div>
 
           <DefaultButton disabled={negativeFeedbackList.length < 1} onClick={onSubmitNegativeFeedback}>
