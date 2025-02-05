@@ -102,7 +102,7 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
     setFeedbackState(newFeedbackState)
 
     // Update message feedback in db
-    await historyMessageFeedback(answer.message_id, newFeedbackState)
+    await historyMessageFeedback(answer.message_id, newFeedbackState, '')
   }
 
   const onDislikeResponseClicked = async () => {
@@ -117,7 +117,7 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
       // Reset negative feedback to neutral
       newFeedbackState = Feedback.Neutral
       setFeedbackState(newFeedbackState)
-      await historyMessageFeedback(answer.message_id, Feedback.Neutral)
+      await historyMessageFeedback(answer.message_id, Feedback.Neutral, '')
     }
     appStateContext?.dispatch({
       type: 'SET_FEEDBACK_STATE',
@@ -141,7 +141,7 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
 
   const onSubmitNegativeFeedback = async () => {
     if (answer.message_id == undefined) return
-    await historyMessageFeedback(answer.message_id, negativeFeedbackList.join(','))
+    await historyMessageFeedback(answer.message_id, negativeFeedbackList.join(','), otherText)
     resetFeedbackDialog()
   }
 

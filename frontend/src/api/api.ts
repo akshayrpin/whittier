@@ -327,12 +327,13 @@ export const frontendSettings = async (): Promise<Response | null> => {
 
   return response
 }
-export const historyMessageFeedback = async (messageId: string, feedback: string): Promise<Response> => {
+export const historyMessageFeedback = async (messageId: string, feedback: string, othertext: string): Promise<Response> => {
   const response = await fetch('/history/message_feedback', {
     method: 'POST',
     body: JSON.stringify({
       message_id: messageId,
-      message_feedback: feedback
+      message_feedback: feedback,
+      other_text: othertext
     }),
     headers: {
       'Content-Type': 'application/json'

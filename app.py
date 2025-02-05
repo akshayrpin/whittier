@@ -538,7 +538,9 @@ async def update_message():
     ## check request for message_id
     request_json = await request.get_json()
     message_id = request_json.get("message_id", None)
-    message_feedback = request_json.get("message_feedback", None)
+    message_feedback = request_json.get("message_feedback", None)    
+    other_text = request_json.get("other_text", None)
+    
     try:
         if not message_id:
             return jsonify({"error": "message_id is required"}), 400
@@ -548,7 +550,7 @@ async def update_message():
 
         ## update the message in cosmos
         updated_message = await current_app.cosmos_conversation_client.update_message_feedback(
-            user_id, message_id, message_feedback
+            user_id, message_id, message_feedback, other_text
         )
         if updated_message:
             return (
