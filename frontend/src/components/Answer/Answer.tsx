@@ -193,7 +193,6 @@ export const Answer = ({ answer, onCitationClicked, onExectResultClicked }: Prop
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOtherText(event.target.value);
-    event.preventDefault()
   };
 
   const ReportInappropriateFeedbackContent = () => {
